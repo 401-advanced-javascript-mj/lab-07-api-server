@@ -2,7 +2,7 @@
 
 ## API Server
 
-### Author: Morgana/Joé
+### Author: Morgana Spake, Joé Jemmely
 
 ### Links and Resources
 
@@ -49,9 +49,14 @@ new Entry(string)
   - Body
     ```
     {
-    "name":"Homer"
+      "name":"Homer"
     }
     ```
   - Returns the modified entry
 - Endpoint: DELETE `/categories/:id`
+
   - Returns the collection of entries without the removed entry
+
+### UML
+
+![UML](https://www.lucidchart.com/publicSegments/view/b08c57a2-b43d-492d-88da-242be7d1ee5c/image.png)
