@@ -1,126 +1,217 @@
-openapi: 3.0.1
-info:
-  title: LAB-07
-  description: Code Fellows lab-07
-  version: '0.1'
-servers:
-  - url: 'http://localhost:8080'
-paths:
-  /categories/{id}:
-    put:
-      description: Update an entry at the given id
-      parameters:
-        - in: path
-          name: id   # Note the name is the same as in the path
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: The entry ID
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-            example:
-                  {"name":"Lisa"}
-      responses:
-        '200':
-          description: The updated entry
-          content:
-            application/json; charset=utf-8:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: number
-                  name:
-                    type: string
-                example:
-                    {"id": 1,"name":"Lisa"}
-      servers:
-        - url: 'http://localhost:8080'
-    delete:
-      description: Delete an entry at the given id
-      parameters:
-      - in: path
-        name: id   # Note the name is the same as in the path
-        required: true
-        schema:
-          type: integer
-          minimum: 1
-          description: The entry ID
-      responses:
-        '200':
-          description: Returns the collection with deleted entry removed
-          content:
-            application/json; charset=utf-8:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: number
-                    name:
-                      type: string
-                example:
-                    []
-      servers:
-        - url: 'http://localhost:8080'
-    servers:
-      - url: 'http://localhost:8080'
-  /categories:
-    get:
-      description: Get all the entries
-      responses:
-        '200':
-          description: A collection of all entries
-          content:
-            application/json; charset=utf-8:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: number
-                    name:
-                      type: string
-                example:
-                    [{"id": 1,"name":"Lisa"}]
-      servers:
-        - url: 'http://localhost:8080'
-    post:
-      description: Add a new entry
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-            example:
-                  {"name":"Lisa"}
-      responses:
-        '200':
-          description: The newly added entry
-          content:
-            application/json; charset=utf-8:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: number
-                  name:
-                    type: string
-                example:
-                    {"id": 1,"name":"Lisa"}
-      servers:
-        - url: 'http://localhost:8080'
-    servers:
-      - url: 'http://localhost:8080'
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "LAB-07",
+    "description": "Code Fellows lab-07",
+    "version": "0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/categories/{id}": {
+      "put": {
+        "description": "Update an entry at the given id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The entry ID",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body"
+              },
+              "example": {
+                "name": "Lisa"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated entry",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:8080"
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete an entry at the given id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "description": "The entry ID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the collection with deleted entry removed",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "array",
+                  "example": [],
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:8080"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://localhost:8080"
+        }
+      ]
+    },
+    "/categories": {
+      "get": {
+        "description": "Get all the entries",
+        "responses": {
+          "200": {
+            "description": "A collection of all entries",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "array",
+                  "example": [
+                    {
+                      "id": 1,
+                      "name": "Lisa"
+                    }
+                  ],
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:8080"
+          }
+        ]
+      },
+      "post": {
+        "description": "Add a new entry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_1"
+              },
+              "example": {
+                "name": "Lisa"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The newly added entry",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:8080"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://localhost:8080"
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": "{\"id\":1,\"name\":\"Lisa\"}"
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "body_1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

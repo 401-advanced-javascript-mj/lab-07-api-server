@@ -1,46 +1,57 @@
-# LAB - 
+# LAB - 07
 
-## Project Name
+## API Server
 
-### Author: Student/Group Name
+### Author: Morgana/Joé
 
 ### Links and Resources
-* [submission PR](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com) (when applicable)
-* [front-end](http://xyz.com) (when applicable)
+
+- [submission PR](http://xyz.com)
 
 #### Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc](http://xyz.com) (Server assignments)
-* [styleguide](http://xyz.com) (React assignments)
+
+- [Swagger](https://app.swaggerhub.com/apis/joejemmely/lab-07/0.1)
 
 ### Modules
-#### `modulename.js`
+
+#### `server.js`
+
 ##### Exported Values and Methods
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+###### `server -> instance of Express`
 
-###### `bar(array) -> array`
-Usage Notes or examples
+##### `stat -> function(port)`
+
+#### `entryConstructor.js`
+
+##### Exported Values and Methods
+
+###### `Entry -> instance of Entry`
+
+new Entry(string)
 
 ### Setup
-#### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
 
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
-  
-#### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
 
-#### UML
-Link to an image of the UML for your application and response to events
+- `npm start`
+- Endpoint: GET `/categories/`
+  - Returns a JSON object with a collection of entries
+- Endpoint: POST `/categories/`
+  - Body
+    ```
+    {
+      "name":"Homer"
+    }
+    ```
+  - Returns the newly added entry
+- Endpoint: PUT `/categories/:id`
+  - Body
+    ```
+    {
+    "name":"Homer"
+    }
+    ```
+  - Returns the modified entry
+- Endpoint: DELETE `/categories/:id`
+  - Returns the collection of entries without the removed entry
